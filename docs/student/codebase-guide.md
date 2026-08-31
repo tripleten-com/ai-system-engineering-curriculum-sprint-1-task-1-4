@@ -121,6 +121,7 @@ poe verify
   -> readiness
   -> smoke tests
   -> end-to-end workflow
+  -> load-harness checks
   -> answer and protected-path checks
 ```
 
