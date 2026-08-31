@@ -1,0 +1,32 @@
+# Coldline - Task 1.4
+# File: submission.yaml
+# Component: Student answer sheet
+# Purpose: Record the Task 1.4 controlled load experiment.
+# Interacts With: Submission schema and public verifier
+# Sprint/Task: Sprint 1 - Project 1 / Task 1.4
+# Concepts: Controlled experiments, bottleneck analysis
+# Tools: YAML
+
+# Complete each answer after running both baseline load tests and the latency-injection experiment.
+# Empty values and placeholder text fail public verification.
+# Do not submit secrets, personal data, local absolute paths, or protected evaluator details.
+# See submission-sample.yaml for a completed fictional shape.
+answers:
+  # 100-1000 characters.
+  baseline_run_1: |
+    Replace this line with your first baseline load test results.
+  # 100-1000 characters.
+  baseline_run_2: |
+    Replace this line with your second baseline load test results.
+  # 40-500 characters.
+  repeatability_notes: |
+    Replace this line with your repeatability comparison between the two baseline runs.
+  # 100-1000 characters.
+  latency_injected_run: |
+    Replace this line with your latency-injected load test results.
+  # 200-1500 characters.
+  bottleneck_analysis: |
+    Replace this line with your primary-bottleneck analysis.
+  # 100-1000 characters.
+  alternative_elimination: |
+    Replace this line with your alternative-elimination explanation.

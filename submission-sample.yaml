@@ -1,0 +1,38 @@
+# Coldline - Task 1.4
+# File: submission-sample.yaml
+# Component: Fictional answer example
+# Purpose: Show the required answer shape without giving Task answers.
+# Interacts With: Submission schema and public verifier
+# Sprint/Task: Sprint 1 - Project 1 / Task 1.4
+# Concepts: Evidence structure
+# Tools: YAML
+
+# Fictional shape example only. These answers do not describe Coldline.
+answers:
+  baseline_run_1: |
+    Fictional baseline run 1 used 20 fictional virtual users for 30 fictional seconds against the
+    fictional API. It reached 48 fictional requests per second with fictional p50/p95/p99 latencies
+    of 90/150/210 fictional milliseconds and a fictional peak queue backlog of 12 fictional messages.
+  baseline_run_2: |
+    Fictional baseline run 2 repeated the identical fictional traffic profile after a fictional
+    environment reset. It reached 49 fictional requests per second with fictional p50/p95/p99
+    latencies of 88/148/205 fictional milliseconds and a fictional peak queue backlog of 11 messages.
+  repeatability_notes: |
+    The two fictional baseline runs stayed within a fictional 2 percent throughput band and a
+    fictional 5 millisecond latency band, so the fictional baseline is repeatable.
+  latency_injected_run: |
+    Injecting 300 fictional milliseconds into the fictional model provider raised fictional worker
+    task duration from 150 to 450 fictional milliseconds, but fictional throughput only dropped from
+    48 to 46 fictional requests per second, and the fictional queue backlog stayed near 13 messages.
+  bottleneck_analysis: |
+    Across all three fictional runs, fictional worker CPU utilization stayed above 90 percent while
+    fictional queue backlog grew steadily whenever fictional request volume increased, well before the
+    fictional model provider's response time changed. The fictional Postgres connection pool and the
+    fictional Redis Streams consumer never approached their fictional configured limits during any of
+    the three runs. This fictional evidence points to fictional worker concurrency as the first
+    resource to saturate under the tested fictional workload, not the fictional model provider.
+  alternative_elimination: |
+    The fictional AI report claimed the fictional model provider was the primary constraint. The
+    fictional latency-injection run refutes this: adding 300 fictional milliseconds of provider delay
+    only reduced fictional throughput by about 4 percent, far less than would occur if the fictional
+    provider were the binding constraint, so the fictional report's claim is not supported by the data.

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answers"],
+  "properties": {
+    "answers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_run_1",
+        "baseline_run_2",
+        "repeatability_notes",
+        "latency_injected_run",
+        "bottleneck_analysis",
+        "alternative_elimination"
+      ],
+      "properties": {
+        "baseline_run_1": { "type": "string", "minLength": 100, "maxLength": 1000 },
+        "baseline_run_2": { "type": "string", "minLength": 100, "maxLength": 1000 },
+        "repeatability_notes": { "type": "string", "minLength": 40, "maxLength": 500 },
+        "latency_injected_run": { "type": "string", "minLength": 100, "maxLength": 1000 },
+        "bottleneck_analysis": { "type": "string", "minLength": 200, "maxLength": 1500 },
+        "alternative_elimination": { "type": "string", "minLength": 100, "maxLength": 1000 }
+      }
+    }
+  }
+}
