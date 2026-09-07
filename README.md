@@ -94,13 +94,17 @@ actual provider span, and run the controlled load comparison:
 ./.tools/bin/uv run --frozen poe reset-baseline
 ./.tools/bin/uv run --frozen poe ready
 ./.tools/bin/uv run --frozen poe load-harness
+./.tools/bin/uv run --frozen poe reset-baseline
+./.tools/bin/uv run --frozen poe ready
 ./.tools/bin/uv run --frozen poe load-test
 ```
 
 Keep the same traffic profile. Editing the constant alone does not change the running worker;
 applying the override recreates it with the new setting. `poe load-harness` requires that
 running configuration and checks an observed provider span, so run it after the override and
-readiness check. Follow the lesson for the measurements and comparison evidence to record.
+readiness check. The probe creates a job, so reset and confirm readiness again before
+the measured load run. The applied delay survives the reset. Record a common cutoff
+for each run's counts. Follow the lesson for the measurements and comparison evidence.
 
 ## Folder map
 
@@ -201,7 +205,7 @@ instructor defense covering empirical reasoning, uncertainty, alternatives, and 
 
 ### Student walkthrough
 
-Run `poe reset-baseline`, `poe ready`, and `poe load-test` for each baseline. Set `INJECTED_DELAY_MS = 300`, apply the runtime override using the command above, reset the baseline and confirm readiness, check `poe load-harness`, and repeat the same experiment. Keep actual observations for the final defense. Complete both baseline records, repeatability comparison, injected-run record, bottleneck analysis, alternative elimination, and fidelity objects from the fixed pack.
+Run `poe reset-baseline`, `poe ready`, and `poe load-test` for each baseline. Set `INJECTED_DELAY_MS = 300`, apply the runtime override using the command above, reset the baseline and confirm readiness, check `poe load-harness`, then reset and confirm readiness again before repeating the experiment. Keep actual observations for the final defense. Complete both baseline records, repeatability comparison, injected-run record, bottleneck analysis, alternative elimination, and fidelity objects from the fixed pack.
 
 Preserve the experiment results, retain the applied provider-delay override, and run
 `poe reset-baseline` and `poe ready` through the locked environment before verification,
