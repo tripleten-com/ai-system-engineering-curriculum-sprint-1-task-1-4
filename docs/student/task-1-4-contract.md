@@ -13,7 +13,10 @@ After the two baseline runs, set the assigned additional delay in the permitted 
 Apply it to the running worker with the helper command in `README.md`, then run
 `poe reset-baseline` and `poe ready` through the locked environment. Run `poe load-harness`
 only after those steps: it checks both the running worker configuration and an observed
-provider span. Then execute the actual injected load experiment with `poe load-test`.
+provider span. This probe creates a real job. Run `poe reset-baseline` and `poe ready`
+again, retaining the applied delay, before the measured `poe load-test` experiment.
+Use one recorded cutoff for the experiment's counts so ongoing worker progress does
+not turn consecutive queries into apparently contradictory totals.
 
 Preserve your experiment evidence, reset the backlog and confirm readiness while retaining
 the applied delay, then run `poe verify` before submitting. Both `poe load-harness` and
