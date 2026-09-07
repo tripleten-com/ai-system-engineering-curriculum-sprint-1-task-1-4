@@ -1,112 +1,271 @@
 # Coldline - Task 1.4
 # File: submission-sample.yaml
-# Fictional shape example only; values do not answer the supplied case.
+# Edit only answer values in submission.yaml; keep the supplied keys and types.
+# Empty strings, nulls, and placeholder text are incomplete and fail verification.
+# Use submission-sample.yaml for YAML formatting only; do not copy its fictional values.
+# Do not include secrets, personal data, or local absolute paths.
+# Use docs/student/evidence-pack.json for assessed answers; retain your required local
+# investigations for the final defense.
+# FICTIONAL FORMAT EXAMPLE: values do not answer the supplied Task. Comments identify the real
+# questions so you can compare this shape with the blank sheet.
+
 answers:
-  # baseline_run_1: complete every named field below.
+
+  # Task 1.4 — Step 1: Running and analyzing the pinned load test
+  # Record the first supplied baseline run. Use its complete observation window and raw counts and
+  # duration sums.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Use 3-6 decimals for calculated measurements; write integer fields as whole numbers.
+  # Use raw source values for later calculations.
   baseline_run_1:
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Duration of the supplied observation window, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     window_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of accepted exception jobs in this window.
+    # Integer; the count must match exactly.
     accepted_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # API acceptance rate, in accepted exception jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     api_acceptance_per_second: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of completed exception jobs at the observation cutoff.
+    # Integer; the count must match exactly.
     completed_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Worker completion rate, in completed jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     worker_completions_per_second: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean worker processing-span duration, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_worker_service_seconds: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean elapsed time from acceptance to terminal persistence, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_accepted_to_terminal_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of unfinished accepted jobs at the common observation cutoff.
+    # Integer; the count must match exactly.
     outstanding_count: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Configured provider delay, in milliseconds; this is a setting, not a measured duration.
+    # Integer; the count must match exactly.
     provider_setting_ms: 7
-  # baseline_run_2: complete every named field below.
+
+  # Task 1.4 — Step 1: Running and analyzing the pinned load test
+  # Record the second supplied baseline run using the same measurement definitions as
+  # baseline_run_1.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Use 3-6 decimals for calculated measurements; write integer fields as whole numbers.
+  # Use raw source values for later calculations.
   baseline_run_2:
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Duration of the supplied observation window, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     window_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of accepted exception jobs in this window.
+    # Integer; the count must match exactly.
     accepted_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # API acceptance rate, in accepted exception jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     api_acceptance_per_second: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of completed exception jobs at the observation cutoff.
+    # Integer; the count must match exactly.
     completed_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Worker completion rate, in completed jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     worker_completions_per_second: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean worker processing-span duration, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_worker_service_seconds: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean elapsed time from acceptance to terminal persistence, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_accepted_to_terminal_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of unfinished accepted jobs at the common observation cutoff.
+    # Integer; the count must match exactly.
     outstanding_count: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Configured provider delay, in milliseconds; this is a setting, not a measured duration.
+    # Integer; the count must match exactly.
     provider_setting_ms: 7
-  # repeatability_comparison: complete every named field below.
+
+  # Task 1.4 — Step 1: Running and analyzing the pinned load test
+  # Compare baseline 2 with baseline 1, and the injected run with baseline 2. Compute signed
+  # percentage changes from full-precision source values; round only final answers.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Use 3-6 decimals for calculated measurements; write integer fields as whole numbers.
+  # Use raw source values for later calculations.
+  #
+  # repeatability options (use exact values):
+  # - within-15-percent-for-three-compared-rates: All three compared quantities are within 15%:
+  #   acceptance rate, completion rate, and mean worker service time.
+  # - outside-15-percent-for-at-least-one-compared-rate: At least one of those three quantities
+  #   changes by more than 15%.
+  #
+  # completion_effect options (use exact values):
+  # - decreased: The injected run's completion rate is lower than baseline 2.
+  # - increased: The injected run's completion rate is higher than baseline 2.
+  # - unchanged: The injected run's completion rate is equal to baseline 2.
   repeatability_comparison:
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in acceptance rate: baseline 2 versus baseline 1, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     baseline_acceptance_change_percent: 7
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in completion rate: baseline 2 versus baseline 1, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     baseline_completion_change_percent: 7
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in mean worker service time: baseline 2 versus baseline 1, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     baseline_service_change_percent: 7
-    # Choose one: within-15-percent-for-three-compared-rates, outside-15-percent-for-at-least-one-compared-rate.
+    # Classify the three baseline comparisons using the supplied 15% threshold.
+    # Choose one string from the repeatability options above.
     repeatability: outside-15-percent-for-at-least-one-compared-rate
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in acceptance rate: injection versus baseline 2, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     injected_acceptance_change_percent: 7
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in completion rate: injection versus baseline 2, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     injected_completion_change_percent: 7
-    # Number in the unit named in this field; absolute tolerance 0.01.
+    # Signed change in mean worker service time: injection versus baseline 2, in percent.
+    # Number; absolute tolerance 0.01 percentage points.
     injected_service_change_percent: 7
-    # Choose one: decreased, increased, unchanged.
+    # Compare the injected completion rate with baseline 2.
+    # Choose one string from the completion_effect options above.
     completion_effect: unchanged
-  # latency_injected_run: complete every named field below.
+
+  # Task 1.4 — Step 2: Extending the load harness with provider latency injection
+  # Record the supplied provider-latency experiment, keeping acceptance, completion, worker service,
+  # and terminal duration distinct.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Use 3-6 decimals for calculated measurements; write integer fields as whole numbers.
+  # Use raw source values for later calculations.
   latency_injected_run:
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Duration of the supplied observation window, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     window_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of accepted exception jobs in this window.
+    # Integer; the count must match exactly.
     accepted_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # API acceptance rate, in accepted exception jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     api_acceptance_per_second: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of completed exception jobs at the observation cutoff.
+    # Integer; the count must match exactly.
     completed_count: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Worker completion rate, in completed jobs per second.
+    # Number; absolute tolerance 0.001 in the named unit.
     worker_completions_per_second: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean worker processing-span duration, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_worker_service_seconds: 7
-    # Number in the unit named in this field; absolute tolerance 0.001.
+    # Mean elapsed time from acceptance to terminal persistence, in seconds.
+    # Number; absolute tolerance 0.001 in the named unit.
     mean_accepted_to_terminal_seconds: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Number of unfinished accepted jobs at the common observation cutoff.
+    # Integer; the count must match exactly.
     outstanding_count: 7
-    # Integer count in the unit named in this field; no rounding tolerance.
+    # Configured provider delay, in milliseconds; this is a setting, not a measured duration.
+    # Integer; the count must match exactly.
     provider_setting_ms: 7
-  # bottleneck_analysis: complete every named field below.
+
+  # Task 1.4 — Step 3: Resource bottleneck identification and alternative elimination
+  # Select and assess a primary bottleneck candidate, then identify the required supporting records.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Reference: docs/student/evidence-pack.json, claims_to_assess.primary.
+  #
+  # candidate options (use exact values):
+  # - sequential-worker-service: The service time of the worker that processes one job at a time.
+  # - api-ingestion: The API stage that accepts incoming readings.
+  # - redis-retained-entries: The entries retained in the Redis stream.
+  #
+  # assessment options (use exact values):
+  # - supported: The supplied evidence establishes the claim within its stated bounds.
+  # - contradicted: The supplied evidence establishes the opposite of the claim.
+  # - insufficient-evidence: The supplied evidence does not establish the claim or its opposite.
+  #
+  # evidence_ids options (use exact values):
+  # - E41: First baseline counts, observation window, and spans.
+  # - E42: Second baseline counts, observation window, and spans.
+  # - E43: Injected-run counts, observation window, and spans.
+  # - E44: Worker topology and provider source description.
+  # - E45: Redis acknowledgment and stream-count semantics.
+  # - E46: Boundaries of the measurements collected.
   bottleneck_analysis:
-    # Choose one: sequential-worker-service, api-ingestion, redis-retained-entries.
+    # Select the primary bottleneck candidate.
+    # Choose one string from the candidate options above.
     candidate: redis-retained-entries
-    # Choose one: supported, contradicted, insufficient-evidence.
+    # Assess the selected candidate or stated claim against the supplied evidence.
+    # Choose one string from the assessment options above.
     assessment: insufficient-evidence
-    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    # Select the evidence records supporting this answer.
+    # YAML list: choose 2-4 unique values from the evidence_ids options above; order does not
+    # matter.
     evidence_ids:
     - E45
     - E46
-  # alternative_elimination: complete every named field below.
+
+  # Task 1.4 — Step 3: Resource bottleneck identification and alternative elimination
+  # Select and assess the specified provider alternative and the separate production-provider claim;
+  # select the required evidence records.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  # Questions: Does increased provider delay contribute to worker service time? Does the same
+  # evidence establish a production provider bottleneck?
+  # Reference: docs/student/evidence-pack.json, claims_to_assess.alternative.
+  #
+  # claim options (use exact values):
+  # - provider-delay-contributes-to-worker-service-time: The claim that provider delay contributes
+  #   to the worker's processing duration.
+  # - api-acceptance-rate-is-worker-throughput: The claim that API acceptance rate represents worker
+  #   completion throughput.
+  # - redis-xlen-is-outstanding-work: The claim that Redis XLEN represents unfinished work.
+  #
+  # assessment / production_provider_claim options (use exact values):
+  # - supported: The supplied evidence establishes the claim within its stated bounds.
+  # - contradicted: The supplied evidence establishes the opposite of the claim.
+  # - insufficient-evidence: The supplied evidence does not establish the claim or its opposite.
+  #
+  # evidence_ids options (use exact values):
+  # - E41: First baseline counts, observation window, and spans.
+  # - E42: Second baseline counts, observation window, and spans.
+  # - E43: Injected-run counts, observation window, and spans.
+  # - E44: Worker topology and provider source description.
+  # - E45: Redis acknowledgment and stream-count semantics.
+  # - E46: Boundaries of the measurements collected.
   alternative_elimination:
-    # Choose one: provider-delay-contributes-to-worker-service-time, api-acceptance-rate-is-worker-throughput, redis-xlen-is-outstanding-work.
+    # Select the alternative claim to assess.
+    # Choose one string from the claim options above.
     claim: redis-xlen-is-outstanding-work
-    # Choose one: supported, contradicted, insufficient-evidence.
+    # Assess the selected candidate or stated claim against the supplied evidence.
+    # Choose one string from the assessment / production_provider_claim options above.
     assessment: insufficient-evidence
-    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    # Select the evidence records supporting this answer.
+    # YAML list: choose 2-4 unique values from the evidence_ids options above; order does not
+    # matter.
     evidence_ids:
     - E45
     - E46
-    # Choose one: supported, contradicted, insufficient-evidence.
+    # Assess the production-provider claim quoted above.
+    # Choose one string from the assessment / production_provider_claim options above.
     production_provider_claim: insufficient-evidence
-  # fidelity: complete every named field below.
+
+  # Task 1.4 — Step 3: Resource bottleneck identification and alternative elimination
+  # Bound the local result, identify the queue measurement, and select the next investigation.
+  # Source: docs/student/evidence-pack.json; guidance: docs/student/evidence-guide.md.
+  #
+  # local_result options (use exact values):
+  # - bounded-local-evidence: Interpret the result within the measured local conditions.
+  # - production-capacity-guarantee: Interpret the result as a guarantee of production capacity.
+  #
+  # queue_measurement options (use exact values):
+  # - accepted-minus-terminal-at-common-cutoff: Count accepted jobs minus terminal jobs at the same
+  #   observation cutoff.
+  # - xlen: Use the number of entries retained in the Redis stream.
+  # - pending-only: Use only entries delivered to consumers but not yet acknowledged.
+  #
+  # next_measurement options (use exact values):
+  # - repeat-isolated-runs-and-observe-queue-and-service: Repeat isolated experiments while
+  #   measuring queue behavior and worker service.
+  # - add-api-and-worker-p95: Add the API and worker 95th-percentile durations.
+  # - infer-managed-aws-performance: Infer managed AWS performance from the supplied local
+  #   measurements.
   fidelity:
-    # Choose one: bounded-local-evidence, production-capacity-guarantee.
+    # Select the scope of the conclusion supported by the local result.
+    # Choose one string from the local_result options above.
     local_result: production-capacity-guarantee
-    # Choose one: accepted-minus-terminal-at-common-cutoff, xlen, pending-only.
+    # Select the measure of outstanding work.
+    # Choose one string from the queue_measurement options above.
     queue_measurement: pending-only
-    # Choose one: repeat-isolated-runs-and-observe-queue-and-service, add-api-and-worker-p95, infer-managed-aws-performance.
+    # Select the measurement to take next.
+    # Choose one string from the next_measurement options above.
     next_measurement: infer-managed-aws-performance
