@@ -2,7 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["answers"],
+  "required": [
+    "answers"
+  ],
   "properties": {
     "answers": {
       "type": "object",
@@ -10,18 +12,414 @@
       "required": [
         "baseline_run_1",
         "baseline_run_2",
-        "repeatability_notes",
+        "repeatability_comparison",
         "latency_injected_run",
         "bottleneck_analysis",
-        "alternative_elimination"
+        "alternative_elimination",
+        "fidelity"
       ],
       "properties": {
-        "baseline_run_1": { "type": "string", "minLength": 100, "maxLength": 1000 },
-        "baseline_run_2": { "type": "string", "minLength": 100, "maxLength": 1000 },
-        "repeatability_notes": { "type": "string", "minLength": 40, "maxLength": 500 },
-        "latency_injected_run": { "type": "string", "minLength": 100, "maxLength": 1000 },
-        "bottleneck_analysis": { "type": "string", "minLength": 200, "maxLength": 1500 },
-        "alternative_elimination": { "type": "string", "minLength": 100, "maxLength": 1000 }
+        "baseline_run_1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "window_seconds",
+            "accepted_count",
+            "api_acceptance_per_second",
+            "completed_count",
+            "worker_completions_per_second",
+            "mean_worker_service_seconds",
+            "mean_accepted_to_terminal_seconds",
+            "outstanding_count",
+            "provider_setting_ms"
+          ],
+          "properties": {
+            "window_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "accepted_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "api_acceptance_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "completed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "worker_completions_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_worker_service_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_accepted_to_terminal_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10000,
+              "x-absolute-tolerance": 0.001
+            },
+            "outstanding_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "provider_setting_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        "baseline_run_2": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "window_seconds",
+            "accepted_count",
+            "api_acceptance_per_second",
+            "completed_count",
+            "worker_completions_per_second",
+            "mean_worker_service_seconds",
+            "mean_accepted_to_terminal_seconds",
+            "outstanding_count",
+            "provider_setting_ms"
+          ],
+          "properties": {
+            "window_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "accepted_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "api_acceptance_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "completed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "worker_completions_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_worker_service_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_accepted_to_terminal_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10000,
+              "x-absolute-tolerance": 0.001
+            },
+            "outstanding_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "provider_setting_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        "repeatability_comparison": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "baseline_acceptance_change_percent",
+            "baseline_completion_change_percent",
+            "baseline_service_change_percent",
+            "repeatability",
+            "injected_acceptance_change_percent",
+            "injected_completion_change_percent",
+            "injected_service_change_percent",
+            "completion_effect"
+          ],
+          "properties": {
+            "baseline_acceptance_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "baseline_completion_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "baseline_service_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "repeatability": {
+              "type": "string",
+              "enum": [
+                "within-15-percent-for-three-compared-rates",
+                "outside-15-percent-for-at-least-one-compared-rate"
+              ]
+            },
+            "injected_acceptance_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "injected_completion_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "injected_service_change_percent": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 1000,
+              "x-absolute-tolerance": 0.01
+            },
+            "completion_effect": {
+              "type": "string",
+              "enum": [
+                "decreased",
+                "increased",
+                "unchanged"
+              ]
+            }
+          }
+        },
+        "latency_injected_run": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "window_seconds",
+            "accepted_count",
+            "api_acceptance_per_second",
+            "completed_count",
+            "worker_completions_per_second",
+            "mean_worker_service_seconds",
+            "mean_accepted_to_terminal_seconds",
+            "outstanding_count",
+            "provider_setting_ms"
+          ],
+          "properties": {
+            "window_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "accepted_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "api_acceptance_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "completed_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "worker_completions_per_second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100000,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_worker_service_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 300,
+              "x-absolute-tolerance": 0.001
+            },
+            "mean_accepted_to_terminal_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10000,
+              "x-absolute-tolerance": 0.001
+            },
+            "outstanding_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            "provider_setting_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          }
+        },
+        "bottleneck_analysis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "candidate",
+            "assessment",
+            "evidence_ids"
+          ],
+          "properties": {
+            "candidate": {
+              "type": "string",
+              "enum": [
+                "sequential-worker-service",
+                "api-ingestion",
+                "redis-retained-entries"
+              ]
+            },
+            "assessment": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "contradicted",
+                "insufficient-evidence"
+              ]
+            },
+            "evidence_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "x-order-independent": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "E41",
+                  "E42",
+                  "E43",
+                  "E44",
+                  "E45",
+                  "E46"
+                ]
+              }
+            }
+          }
+        },
+        "alternative_elimination": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "claim",
+            "assessment",
+            "evidence_ids",
+            "production_provider_claim"
+          ],
+          "properties": {
+            "claim": {
+              "type": "string",
+              "enum": [
+                "provider-delay-contributes-to-worker-service-time",
+                "api-acceptance-rate-is-worker-throughput",
+                "redis-xlen-is-outstanding-work"
+              ]
+            },
+            "assessment": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "contradicted",
+                "insufficient-evidence"
+              ]
+            },
+            "evidence_ids": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "x-order-independent": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "E41",
+                  "E42",
+                  "E43",
+                  "E44",
+                  "E45",
+                  "E46"
+                ]
+              }
+            },
+            "production_provider_claim": {
+              "type": "string",
+              "enum": [
+                "supported",
+                "contradicted",
+                "insufficient-evidence"
+              ]
+            }
+          }
+        },
+        "fidelity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "local_result",
+            "queue_measurement",
+            "next_measurement"
+          ],
+          "properties": {
+            "local_result": {
+              "type": "string",
+              "enum": [
+                "bounded-local-evidence",
+                "production-capacity-guarantee"
+              ]
+            },
+            "queue_measurement": {
+              "type": "string",
+              "enum": [
+                "accepted-minus-terminal-at-common-cutoff",
+                "xlen",
+                "pending-only"
+              ]
+            },
+            "next_measurement": {
+              "type": "string",
+              "enum": [
+                "repeat-isolated-runs-and-observe-queue-and-service",
+                "add-api-and-worker-p95",
+                "infer-managed-aws-performance"
+              ]
+            }
+          }
+        }
       }
     }
   }

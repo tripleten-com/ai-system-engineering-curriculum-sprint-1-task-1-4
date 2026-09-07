@@ -28,41 +28,8 @@ ROOT = Path(__file__).parents[2]
 
 
 def valid_answers() -> dict[str, object]:
-    """Return a complete fictional answer sheet unrelated to Coldline outcomes."""
-    return {
-        "answers": {
-            "baseline_run_1": (
-                "Fictional baseline run 1 reached 48 fictional requests per second with "
-                "fictional p95 latency of 150 fictional milliseconds and a fictional peak "
-                "queue backlog of 12 fictional messages."
-            ),
-            "baseline_run_2": (
-                "Fictional baseline run 2 reached 49 fictional requests per second with "
-                "fictional p95 latency of 148 fictional milliseconds and a fictional peak "
-                "queue backlog of 11 fictional messages."
-            ),
-            "repeatability_notes": (
-                "The two fictional baseline runs stayed within a fictional 2 percent "
-                "throughput band, so the fictional baseline is repeatable."
-            ),
-            "latency_injected_run": (
-                "Injecting 300 fictional milliseconds into the fictional model provider "
-                "raised fictional worker duration but only dropped fictional throughput "
-                "from 48 to 46 fictional requests per second."
-            ),
-            "bottleneck_analysis": (
-                "Fictional worker CPU utilization stayed above 90 percent while fictional "
-                "queue backlog grew steadily before the fictional model provider's response "
-                "time changed, pointing to fictional worker concurrency as the first resource "
-                "to saturate under the tested fictional workload."
-            ),
-            "alternative_elimination": (
-                "The fictional latency-injection run reduced fictional throughput by only "
-                "about 4 percent, far less than expected if the fictional provider were the "
-                "binding constraint, so the fictional report's claim is not supported."
-            ),
-        }
-    }
+    """Use the fictional teaching sample for shape tests, never a real answer key."""
+    return _load_one_document(ROOT / "submission-sample.yaml")
 
 
 def test_complete_answer_shape_passes_public_validation(tmp_path: Path) -> None:
@@ -100,7 +67,7 @@ def test_unexpected_answer_field_is_rejected(tmp_path: Path) -> None:
     submission = tmp_path / "submission.yaml"
     submission.write_text(yaml.safe_dump(answers), encoding="utf-8")
 
-    with pytest.raises(SubmissionError, match="Additional properties"):
+    with pytest.raises(SubmissionError, match="additionalProperties"):
         validate_submission(submission, ROOT / "docs/contracts/submission.schema.json")
 
 
@@ -150,7 +117,7 @@ def test_public_entrypoint_reports_an_incomplete_answer_sheet(
     )
 
     assert main(tmp_path, changed_paths=[]) == 1
-    assert "answers.baseline_run_1 is incomplete" in capsys.readouterr().err
+    assert "answers.baseline_run_1.window_seconds is incomplete" in capsys.readouterr().err
 
 
 @pytest.mark.parametrize(

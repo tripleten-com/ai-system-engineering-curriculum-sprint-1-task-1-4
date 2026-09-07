@@ -69,7 +69,7 @@ poe verify
 | `poe load-harness` | Check the permitted provider-latency injection |
 | `poe load-test` | Run this repository's supplied traffic profile |
 | `poe reset-baseline` | Clear exception and Redis data, then restart the worker between load runs |
-| `poe restart` | Restart API and worker processes |
+| `poe restart` | Restart the existing API and worker containers **without rebuilding**; run `poe start` instead after editing source |
 | `poe stop` | Remove containers and the network, keeping named volumes |
 | `poe reset` | Remove containers, the network, and local named volumes |
 
@@ -80,16 +80,27 @@ The supplied `poe load-test` profile uses 20 users, a spawn rate of 5 users/seco
 Keep the profile unchanged when comparing measurements.
 
 For the Task 1.4 experiment, capture two baseline runs with `poe load-test`, using
-`poe reset-baseline` between runs. After making the permitted latency-harness edit and checking it
-with `poe load-harness`, apply the delay to the running worker:
+`poe reset-baseline` between runs. After setting `INJECTED_DELAY_MS = 300` in the
+permitted harness file, apply the delay to the running worker:
 
 ```shell
 ./.tools/bin/uv run --frozen python -c "from loadtest.model_provider_latency import apply_latency_override, injected_latency_ms; apply_latency_override(injected_latency_ms())"
 ```
 
-Then run `poe reset-baseline` and `poe load-test` again with the same traffic profile. Editing the
-constant alone does not change the running worker; applying the override recreates it with the
-new setting. Follow the lesson for the measurements and comparison evidence to record.
+Next, clear the experiment backlog, confirm readiness, check the configured worker and an
+actual provider span, and run the controlled load comparison:
+
+```shell
+./.tools/bin/uv run --frozen poe reset-baseline
+./.tools/bin/uv run --frozen poe ready
+./.tools/bin/uv run --frozen poe load-harness
+./.tools/bin/uv run --frozen poe load-test
+```
+
+Keep the same traffic profile. Editing the constant alone does not change the running worker;
+applying the override recreates it with the new setting. `poe load-harness` requires that
+running configuration and checks an observed provider span, so run it after the override and
+readiness check. Follow the lesson for the measurements and comparison evidence to record.
 
 ## Folder map
 
@@ -166,25 +177,39 @@ runtime evidence rather than from this guide.
 
 ## Task boundary
 
-Task 1.4 asks you to run a controlled load-testing experiment: two repeatable baseline runs, one
-provider-latency injection run, and a data-backed bottleneck analysis that evaluates and rules out an
-alternative explanation.
+Run two actual baseline load experiments and one controlled provider-delay comparison, then analyze the limiting resource and a competing explanation.
 
-Only these paths are student-editable (see the
-[Task 1.4 contract](docs/student/task-1-4-contract.md) for the full detail):
+Only these paths are student-editable:
 
 - `loadtest/model_provider_latency.py`
 - `submission.yaml`
 
-The public verifier checks answer structure, completeness, and that the injected latency test passes.
-It cannot grade engineering judgment. The instructor reviews the quality of the evidence and reasoning.
+Read [the evidence guide](docs/student/evidence-guide.md) and the versioned
+[fixed evidence pack](docs/student/evidence-pack.json) before completing `submission.yaml`.
+The sheet and its fictional sample show exact objects, values, and units. Graded
+analysis comes from this supplied pack; actual local investigations remain required
+and provide evidence for the final instructor defense. Keep those sources distinct.
+
+The public verifier checks answer structure, permitted changes, and the Task's
+published runtime behavior and public arithmetic checks. Protected automated answer
+checks establish semantic correctness against the public fixed pack. These protected
+answer checks are distinct from the single Task 1.6 held-out runtime scenario.
+Deterministic CI accepts Task
+answers; there is no separate instructor Task-answer grade. Green required public and protected CI opens
+the next Task. Sprint completion requires all six Task PRs CI-green and one final
+instructor defense covering empirical reasoning, uncertainty, alternatives, and judgment.
 
 ### Student walkthrough
 
-See **Task 1.4: Supplied Load Experiment** in your course platform for the full walkthrough. In outline: run the pinned load test twice to establish a repeatable baseline,
-set `INJECTED_DELAY_MS = 300` in `loadtest/model_provider_latency.py` and rerun the load test, run
-`poe verify`, then document your baseline runs, latency-injected run, bottleneck analysis, and
-alternative-elimination reasoning in `submission.yaml`.
+Run `poe reset-baseline`, `poe ready`, and `poe load-test` for each baseline. Set `INJECTED_DELAY_MS = 300`, apply the runtime override using the command above, reset the baseline and confirm readiness, check `poe load-harness`, and repeat the same experiment. Keep actual observations for the final defense. Complete both baseline records, repeatability comparison, injected-run record, bottleneck analysis, alternative elimination, and fidelity objects from the fixed pack.
+
+Preserve the experiment results, retain the applied provider-delay override, and run
+`poe reset-baseline` and `poe ready` through the locked environment before verification,
+so the diagnostic probe is not delayed behind experimental backlog.
+
+Run `./.tools/bin/uv run --frozen poe verify` from the repository root before
+submitting a feature-branch PR against `main`. See the course Task lesson for the
+three-Step walkthrough and exact matching acceptance/self-review criteria.
 
 ## Operational limits
 

@@ -1,32 +1,111 @@
 # Coldline - Task 1.4
 # File: submission.yaml
-# Component: Student answer sheet
-# Purpose: Record the Task 1.4 controlled load experiment.
-# Interacts With: Submission schema and public verifier
-# Sprint/Task: Sprint 1 - Project 1 / Task 1.4
-# Concepts: Controlled experiments, bottleneck analysis
-# Tools: YAML
-
-# Complete each answer after running both baseline load tests and the latency-injection experiment.
-# Empty values and placeholder text fail public verification.
-# Do not submit secrets, personal data, local absolute paths, or protected evaluator details.
-# See submission-sample.yaml for a completed fictional shape.
+# Complete the structured answers from docs/student/evidence-pack.json.
+# Nulls are intentionally incomplete. Live investigations are required practical work
+# and evidence for instructor defense; fixed-pack values answer this assessed case.
+# See submission-sample.yaml for a fictional completed shape.
 answers:
-  # 100-1000 characters.
-  baseline_run_1: |
-    Replace this line with your first baseline load test results.
-  # 100-1000 characters.
-  baseline_run_2: |
-    Replace this line with your second baseline load test results.
-  # 40-500 characters.
-  repeatability_notes: |
-    Replace this line with your repeatability comparison between the two baseline runs.
-  # 100-1000 characters.
-  latency_injected_run: |
-    Replace this line with your latency-injected load test results.
-  # 200-1500 characters.
-  bottleneck_analysis: |
-    Replace this line with your primary-bottleneck analysis.
-  # 100-1000 characters.
-  alternative_elimination: |
-    Replace this line with your alternative-elimination explanation.
+  # baseline_run_1: complete every named field below.
+  baseline_run_1:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: null
+  # baseline_run_2: complete every named field below.
+  baseline_run_2:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: null
+  # repeatability_comparison: complete every named field below.
+  repeatability_comparison:
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_acceptance_change_percent: null
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_completion_change_percent: null
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_service_change_percent: null
+    # Choose one: within-15-percent-for-three-compared-rates, outside-15-percent-for-at-least-one-compared-rate.
+    repeatability: null
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_acceptance_change_percent: null
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_completion_change_percent: null
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_service_change_percent: null
+    # Choose one: decreased, increased, unchanged.
+    completion_effect: null
+  # latency_injected_run: complete every named field below.
+  latency_injected_run:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: null
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: null
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: null
+  # bottleneck_analysis: complete every named field below.
+  bottleneck_analysis:
+    # Choose one: sequential-worker-service, api-ingestion, redis-retained-entries.
+    candidate: null
+    # Choose one: supported, contradicted, insufficient-evidence.
+    assessment: null
+    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    evidence_ids: null
+  # alternative_elimination: complete every named field below.
+  alternative_elimination:
+    # Choose one: provider-delay-contributes-to-worker-service-time, api-acceptance-rate-is-worker-throughput, redis-xlen-is-outstanding-work.
+    claim: null
+    # Choose one: supported, contradicted, insufficient-evidence.
+    assessment: null
+    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    evidence_ids: null
+    # Choose one: supported, contradicted, insufficient-evidence.
+    production_provider_claim: null
+  # fidelity: complete every named field below.
+  fidelity:
+    # Choose one: bounded-local-evidence, production-capacity-guarantee.
+    local_result: null
+    # Choose one: accepted-minus-terminal-at-common-cutoff, xlen, pending-only.
+    queue_measurement: null
+    # Choose one: repeat-isolated-runs-and-observe-queue-and-service, add-api-and-worker-p95, infer-managed-aws-performance.
+    next_measurement: null

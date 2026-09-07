@@ -1,38 +1,112 @@
 # Coldline - Task 1.4
 # File: submission-sample.yaml
-# Component: Fictional answer example
-# Purpose: Show the required answer shape without giving Task answers.
-# Interacts With: Submission schema and public verifier
-# Sprint/Task: Sprint 1 - Project 1 / Task 1.4
-# Concepts: Evidence structure
-# Tools: YAML
-
-# Fictional shape example only. These answers do not describe Coldline.
+# Fictional shape example only; values do not answer the supplied case.
 answers:
-  baseline_run_1: |
-    Fictional baseline run 1 used 20 fictional virtual users for 30 fictional seconds against the
-    fictional API. It reached 48 fictional requests per second with fictional p50/p95/p99 latencies
-    of 90/150/210 fictional milliseconds and a fictional peak queue backlog of 12 fictional messages.
-  baseline_run_2: |
-    Fictional baseline run 2 repeated the identical fictional traffic profile after a fictional
-    environment reset. It reached 49 fictional requests per second with fictional p50/p95/p99
-    latencies of 88/148/205 fictional milliseconds and a fictional peak queue backlog of 11 messages.
-  repeatability_notes: |
-    The two fictional baseline runs stayed within a fictional 2 percent throughput band and a
-    fictional 5 millisecond latency band, so the fictional baseline is repeatable.
-  latency_injected_run: |
-    Injecting 300 fictional milliseconds into the fictional model provider raised fictional worker
-    task duration from 150 to 450 fictional milliseconds, but fictional throughput only dropped from
-    48 to 46 fictional requests per second, and the fictional queue backlog stayed near 13 messages.
-  bottleneck_analysis: |
-    Across all three fictional runs, fictional worker CPU utilization stayed above 90 percent while
-    fictional queue backlog grew steadily whenever fictional request volume increased, well before the
-    fictional model provider's response time changed. The fictional Postgres connection pool and the
-    fictional Redis Streams consumer never approached their fictional configured limits during any of
-    the three runs. This fictional evidence points to fictional worker concurrency as the first
-    resource to saturate under the tested fictional workload, not the fictional model provider.
-  alternative_elimination: |
-    The fictional AI report claimed the fictional model provider was the primary constraint. The
-    fictional latency-injection run refutes this: adding 300 fictional milliseconds of provider delay
-    only reduced fictional throughput by about 4 percent, far less than would occur if the fictional
-    provider were the binding constraint, so the fictional report's claim is not supported by the data.
+  # baseline_run_1: complete every named field below.
+  baseline_run_1:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: 7
+  # baseline_run_2: complete every named field below.
+  baseline_run_2:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: 7
+  # repeatability_comparison: complete every named field below.
+  repeatability_comparison:
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_acceptance_change_percent: 7
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_completion_change_percent: 7
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    baseline_service_change_percent: 7
+    # Choose one: within-15-percent-for-three-compared-rates, outside-15-percent-for-at-least-one-compared-rate.
+    repeatability: outside-15-percent-for-at-least-one-compared-rate
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_acceptance_change_percent: 7
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_completion_change_percent: 7
+    # Number in the unit named in this field; absolute tolerance 0.01.
+    injected_service_change_percent: 7
+    # Choose one: decreased, increased, unchanged.
+    completion_effect: unchanged
+  # latency_injected_run: complete every named field below.
+  latency_injected_run:
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    window_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    accepted_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    api_acceptance_per_second: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    completed_count: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    worker_completions_per_second: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_worker_service_seconds: 7
+    # Number in the unit named in this field; absolute tolerance 0.001.
+    mean_accepted_to_terminal_seconds: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    outstanding_count: 7
+    # Integer count in the unit named in this field; no rounding tolerance.
+    provider_setting_ms: 7
+  # bottleneck_analysis: complete every named field below.
+  bottleneck_analysis:
+    # Choose one: sequential-worker-service, api-ingestion, redis-retained-entries.
+    candidate: redis-retained-entries
+    # Choose one: supported, contradicted, insufficient-evidence.
+    assessment: insufficient-evidence
+    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    evidence_ids:
+    - E45
+    - E46
+  # alternative_elimination: complete every named field below.
+  alternative_elimination:
+    # Choose one: provider-delay-contributes-to-worker-service-time, api-acceptance-rate-is-worker-throughput, redis-xlen-is-outstanding-work.
+    claim: redis-xlen-is-outstanding-work
+    # Choose one: supported, contradicted, insufficient-evidence.
+    assessment: insufficient-evidence
+    # Choose 2-4 unique IDs/values (order independent): E41, E42, E43, E44, E45, E46.
+    evidence_ids:
+    - E45
+    - E46
+    # Choose one: supported, contradicted, insufficient-evidence.
+    production_provider_claim: insufficient-evidence
+  # fidelity: complete every named field below.
+  fidelity:
+    # Choose one: bounded-local-evidence, production-capacity-guarantee.
+    local_result: production-capacity-guarantee
+    # Choose one: accepted-minus-terminal-at-common-cutoff, xlen, pending-only.
+    queue_measurement: pending-only
+    # Choose one: repeat-isolated-runs-and-observe-queue-and-service, add-api-and-worker-p95, infer-managed-aws-performance.
+    next_measurement: infer-managed-aws-performance
