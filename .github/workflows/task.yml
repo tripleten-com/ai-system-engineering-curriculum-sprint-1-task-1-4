@@ -45,6 +45,11 @@ jobs:
           .tools/bin/uv sync --frozen
       - name: Start the pinned runtime
         run: .tools/bin/uv run --frozen poe start
+      - name: Apply the submitted latency extension in the unprivileged runtime
+        run: |
+          .tools/bin/uv run --frozen python -c "from loadtest.model_provider_latency import apply_latency_override, injected_latency_ms; apply_latency_override(injected_latency_ms())"
+          .tools/bin/uv run --frozen poe reset-baseline
+          .tools/bin/uv run --frozen poe ready
       - name: Verify the public contract
         run: .tools/bin/uv run --frozen poe verify
       - name: Stop the runtime
